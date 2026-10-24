@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#b8860b">
+  <title>Golden Royale | Social Community</title>
+
+  <link rel="stylesheet" href="./style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="topbar">
+    <a href="#" class="brand"><span class="crown">♛</span> Golden<span>Royale</span></a>
+    <div class="top-search">
+      <span>⌕</span>
+      <input id="globalSearch" type="search" placeholder="Search people, posts, products...">
+    </div>
+    <div class="top-actions">
+      <button class="icon-btn" id="themeBtn" title="Change theme">☾</button>
+      <button class="icon-btn" id="notificationBtn" title="Notifications">♧<span class="dot"></span></button>
+      <button class="profile-mini" id="profileBtn" title="Edit profile">B</button>
+    </div>
+  </header>
+
+  <div class="app-layout">
+    <aside class="sidebar panel">
+      <div class="user-summary">
+        <div class="avatar avatar-large" id="sideAvatar">B</div>
+        <h3 id="sideName">Bhargavi</h3>
+        <p id="sideHandle">@bhargavi_raj</p>
+        <div class="mini-stats">
+          <div><strong id="followingCount">0</strong><span>Following</span></div>
+          <div><strong id="postCount">0</strong><span>Posts</span></div>
+        </div>
+      </div>
+
+      <nav class="nav-menu">
+        <button class="nav-item active" data-view="feed">⌂ <span>Home Feed</span></button>
+        <button class="nav-item" data-view="explore">✧ <span>Explore</span></button>
+        <button class="nav-item" data-view="following">♡ <span>Following</span></button>
+        <button class="nav-item" data-view="marketplace">♢ <span>Marketplace</span></button>
+        <button class="nav-item" data-view="saved">⚑ <span>Saved Posts</span></button>
+        <button class="nav-item" data-view="notifications">♧ <span>Notifications</span><span class="nav-count" id="notificationCount">0</span></button>
+      </nav>
+
+      <button class="btn btn-gold full-width" id="sidebarCreate">＋ Create a post</button>
+
+      <div class="sidebar-footer">
+        <span>✦ Premium Community</span>
+        <p>Connect. Create. Discover.</p>
+        <small>© 2026 Golden Royale</small>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <section class="hero-banner">
+        <div class="hero-copy">
+          <span class="eyebrow">YOUR COMMUNITY, YOUR STYLE</span>
+          <h1>Where golden ideas<br>come to life.</h1>
+          <p>Share your story, discover inspiration, and connect with people who inspire you.</p>
+          <button class="btn btn-light" id="heroCreate">Share your story ↗</button>
+        </div>
+        <div class="hero-decoration"><span>♛</span><i>✦</i><b>GR</b></div>
+      </section>
+
+      <section class="stories-section">
+        <div class="section-heading">
+          <div><h2>Royale Stories</h2><p>Little moments, big inspiration.</p></div>
+          <button class="text-btn" id="addStoryBtn">＋ Add story</button>
+        </div>
+        <div class="stories-row" id="storiesRow"></div>
+      </section>
+
+      <section class="composer panel" id="composer">
+        <div class="composer-top">
+          <div class="avatar" id="composerAvatar">B</div>
+          <button class="composer-prompt" id="composerPrompt">What would you like to share today?</button>
+        </div>
+
+        <form id="postForm">
+          <textarea id="postText" maxlength="1000" placeholder="Share an idea, a moment, or some inspiration..." required></textarea>
+          <input id="postImage" type="url" placeholder="Paste a direct image URL (https://...)">
+          <div class="composer-bottom">
+            <span id="charCount">0 / 1000</span>
+            <button class="btn btn-gold" type="submit">Publish post ↗</button>
+          </div>
+        </form>
+      </section>
+
+      <div class="feed-heading" id="feedHeading">
+        <div>
+          <h2 id="feedTitle">Community Feed</h2>
+          <p id="feedSubtitle">Fresh inspiration from your community</p>
+        </div>
+        <select id="sortPosts" aria-label="Sort posts">
+          <option value="latest">Latest posts</option>
+          <option value="popular">Most liked</option>
+        </select>
+      </div>
+
+      <div id="postsContainer" class="posts-container"></div>
+      <div id="emptyState" class="empty-state hidden">
+        <div>✧</div><h3>Nothing here just yet</h3>
+        <p>Try another search or create the first post.</p>
+      </div>
+
+      <section id="marketplaceSection" class="hidden">
+        <div class="market-heading">
+          <div>
+            <span class="eyebrow">THE ROYALE COLLECTION</span>
+            <h2>Discover products</h2>
+            <p>Curated finds from the community.</p>
+          </div>
+          <button class="btn btn-gold" id="addProductBtn">＋ Add product</button>
+        </div>
+
+        <div class="market-controls">
+          <input id="productSearch" type="search" placeholder="Search products...">
+          <select id="productCategory">
+            <option value="all">All categories</option>
+            <option value="Fashion">Fashion</option>
+            <option value="Accessories">Accessories</option>
+            <option value="Home">Home & Living</option>
+            <option value="Technology">Technology</option>
+            <option value="Beauty">Beauty</option>
+          </select>
+        </div>
+
+        <div class="product-grid" id="productGrid"></div>
+
+        <div class="cart-summary panel">
+          <div><span class="cart-icon">♢</span><div><strong>Your shopping bag</strong><p id="cartDetails">0 items added</p></div></div>
+          <div class="cart-total"><span>Total</span><strong id="cartTotal">₹0</strong></div>
+          <button class="btn btn-gold" id="viewCartBtn">View cart</button>
+        </div>
+      </section>
+    </main>
+
+    <aside class="rightbar">
+      <section class="panel side-card">
+        <div class="side-card-heading"><h3>Trending now</h3><span>✧</span></div>
+        <div class="trend-item"><span class="trend-number">01</span><div><strong>#RoyaleStyle</strong><small>Fashion · Community</small></div></div>
+        <div class="trend-item"><span class="trend-number">02</span><div><strong>#CreativeMinds</strong><small>Art · Inspiration</small></div></div>
+        <div class="trend-item"><span class="trend-number">03</span><div><strong>#GoldenLiving</strong><small>Lifestyle · Design</small></div></div>
+        <div class="trend-item"><span class="trend-number">04</span><div><strong>#SmallBusiness</strong><small>Shopping · Community</small></div></div>
+      </section>
+
+      <section class="panel side-card">
+        <div class="side-card-heading"><h3>People to discover</h3><span>♧</span></div>
+        <div id="suggestedUsers"></div>
+      </section>
+
+      <section class="promo-card">
+        <span>♛ ROYALE PICKS</span>
+        <h3>Beautiful finds.<br>Meaningful connections.</h3>
+        <p>Explore products shared by the community.</p>
+        <button id="exploreMarketBtn" class="btn btn-light">Explore marketplace ↗</button>
+      </section>
+
+      <div class="right-footer">About · Community guidelines · Privacy<br><br>Made with ✦ for creative minds.</div>
+    </aside>
+  </div>
+
+  <nav class="mobile-nav">
+    <button data-view="feed" class="active">⌂<span>Home</span></button>
+    <button data-view="explore">✧<span>Explore</span></button>
+    <button id="mobileCreate">＋<span>Create</span></button>
+    <button data-view="marketplace">♢<span>Shop</span></button>
+    <button id="mobileProfile">♙<span>Profile</span></button>
+  </nav>
+
+  <dialog id="profileDialog" class="modal">
+    <form id="profileForm">
+      <div class="modal-heading">
+        <div><span class="eyebrow">YOUR IDENTITY</span><h2>Edit your profile</h2></div>
+        <button type="button" class="close-btn" data-close="profileDialog">×</button>
+      </div>
+      <label>Display name<input id="profileName" maxlength="40" required></label>
+      <label>Username<input id="profileHandle" maxlength="24" pattern="[A-Za-z0-9_]+" required></label>
+      <label>Short bio<textarea id="profileBio" maxlength="160" placeholder="Tell the community about yourself"></textarea></label>
+      <label>Avatar image URL<input id="profileImage" type="url" placeholder="Optional https://..."></label>
+      <button class="btn btn-gold full-width" type="submit">Save profile</button>
+    </form>
+  </dialog>
+
+  <dialog id="productDialog" class="modal">
+    <form id="productForm">
+      <div class="modal-heading">
+        <div><span class="eyebrow">COMMUNITY MARKETPLACE</span><h2>List a product</h2></div>
+        <button type="button" class="close-btn" data-close="productDialog">×</button>
+      </div>
+      <label>Product name<input id="newProductName" maxlength="80" required></label>
+      <label>Price in ₹<input id="newProductPrice" type="number" min="1" max="10000000" required></label>
+      <label>Category<select id="newProductCategory"><option>Fashion</option><option>Accessories</option><option>Home</option><option>Technology</option><option>Beauty</option></select></label>
+      <label>Image URL<input id="newProductImage" type="url" placeholder="Optional https://..."></label>
+      <label>Description<textarea id="newProductDescription" maxlength="250" required></textarea></label>
+      <button class="btn btn-gold full-width" type="submit">Publish product</button>
+    </form>
+  </dialog>
+
+  <dialog id="notificationDialog" class="modal">
+    <div class="modal-heading">
+      <div><span class="eyebrow">STAY IN THE LOOP</span><h2>Notifications</h2></div>
+      <button class="close-btn" data-close="notificationDialog">×</button>
+    </div>
+    <div id="notificationList" class="notification-list"></div>
+    <button id="markReadBtn" class="btn btn-outline full-width">Mark all as read</button>
+  </dialog>
+
+  <dialog id="cartDialog" class="modal">
+    <div class="modal-heading">
+      <div><span class="eyebrow">YOUR ROYALE PICKS</span><h2>Shopping bag</h2></div>
+      <button class="close-btn" data-close="cartDialog">×</button>
+    </div>
+    <div id="cartItems"></div>
+    <div class="cart-dialog-total"><span>Total</span><strong id="dialogCartTotal">₹0</strong></div>
+    <button id="checkoutBtn" class="btn btn-gold full-width">Continue to checkout</button>
+    <p class="muted small">Demo marketplace: checkout is not connected to a payment provider.</p>
+  </dialog>
+
+  <div id="toast" class="toast" role="status"></div>
+  <script src="./script.js" defer></script>
+</body>
+</html>
